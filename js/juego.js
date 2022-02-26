@@ -216,10 +216,47 @@ function dibujaEscenario(){
     }
     
 }
+
+//-------------------------------------------------
+function creaBloque(x,y){
+
+ var xBloque = parseInt(x/anchoF);
+ var yBloque = parseInt(y/altoF);
+
+ var colorBloque = escenario[yBloque][xBloque];
+
+ if (colorBloque == 0){
+  colorBloque = 2;
+ }
+ else{
+  colorBloque = 0;
+ }
+ escenario[yBloque][xBloque] = colorBloque;
+}
+
  //---------------------------------------------------------------------------
 
-  var ratonX = 0;
-  var ratonY = 0;
+var ratonX = 0;
+var ratonY = 0;
+
+function clicRaton(objeto){
+console.log("aprieta raton");
+}
+
+function sueltaRaton(objeto){
+  
+creaBloque(ratonX,ratonY);
+console.log("suelta raton");
+}
+
+function posicionRaton(objeto){
+ratonX = objeto.pageX;
+ratonY = objeto.pageY;
+
+console.log(ratonX + " - "+ ratonY)
+}
+
+
 
 function inicializa(){
     canvas = document.getElementById('canvas');
@@ -231,9 +268,9 @@ function inicializa(){
 
     //CONTROLAR EL RATÓN
 
-   // canvas.addEventListener('mousedown', clicRaton,false);
-   // canvas.addEventListener('mouseup', clicRaton,false);
-   // canvas.addEventListener('mousemove', posicionRaton,false);
+   canvas.addEventListener('mousedown', clicRaton,false);
+   canvas.addEventListener('mouseup', sueltaRaton,false);
+   canvas.addEventListener('mousemove', posicionRaton,false);
 
 
   
